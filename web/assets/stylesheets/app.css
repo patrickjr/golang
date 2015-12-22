@@ -7,11 +7,13 @@ html, body, head{
 
 
 .nav-bar-top{ 
+  max-width: 1010px;
   width: 100%;
   position: fixed;
   height: 48px;
   top: 0px;
-  border-bottom: 1px black solid;
+  z-index: 2;
+  border-bottom: 2px solid #428bca;
 }
 
 .nav-bar-top > .item-box{
@@ -25,5 +27,136 @@ html, body, head{
   text-align: right;
   padding-right: 5px;
   width: 100%;
+  border-bottom: 2px solid white;
+}
+.item-box > span:hover{
+  border-bottom-color: #428bca;
+  cursor: pointer;
 }
 
+.custom-container{
+  top: 48px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.box{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.black-bkg{
+  background-color: black;
+}
+.white-bkg{
+  background-color: white;
+}
+
+.h-550{
+  min-height: 550px;
+}
+
+.left-50-100{
+  left: 50%;
+  width: 50%;
+}
+
+.left-0-50{
+  left: 0%;
+  width: 50%;
+}
+.absolute{
+  position: absolute;
+}
+
+.padding-10{
+  padding: 10%;
+}
+
+.height-100{
+  height: 100%;
+}
+
+.top-20{
+  top: 20%;
+}
+.top-12{
+  top: 5%;
+}
+
+.border-right-blue{
+  border-right: 2px solid #428bca;
+}
+
+.image-container{
+
+}
+.image-container > p > img {
+  border-radius: 50%;
+  border: 3.5px solid #428bca;
+  max-width:100%;
+  max-height:100%;
+}
+
+.about-image{
+    position: absolute;
+    height: 100%;
+    left: -5%;
+}
+.about-table{
+    height: 100%;
+    white-space: nowrap;
+    width: 100%;
+    display: table;
+}
+
+.about-cell {
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.about-cell img {
+  max-height: 414px;
+  max-width: 100%;
+  border-color: #286090;
+  border-style: solid;
+  border-radius: 50%;
+}
+
+
+.about-image{
+    position: relative;
+    width: 40%;
+    float: right;
+    height: 100%;
+}
+
+.box > h3{
+  text-align: center;
+  color: #428bca;
+  font-size: 25px;
+}
+
+@media (max-width: 598px) {
+  .border-right-blue{
+    border: 0px;
+  }
+  .left-0-50{
+    width: 100%;
+    left: 0%;
+    top: 130px;
+  }
+  .left-50-100{
+    width: 100%;
+    left: 0%;
+  }
+  .image-container{
+    position: absolute;
+    height: 250px;
+    left: 25%;
+    width: 50%;
+  }
+
+}

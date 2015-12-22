@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"os"
 	"text/template"
 
 	"github.com/julienschmidt/httprouter"
@@ -21,7 +20,13 @@ func NewWebApplication() *webApplication {
 }
 
 func (webApp *webApplication) init() {
-	webApp.templates = template.Must(template.ParseFiles("index.html"))
+
+	webApp.templates = template.Must(template.ParseGlob("views/*")).Funcs(
+		template.FuncMap{
+			"eq": func(x, b bool) bool {
+				return x == b
+			},
+		})
 }
 
 func (app *webApplication) Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
@@ -41,12 +46,6 @@ func (app *webApplication) renderTemplate(w http.ResponseWriter, tmpl string) {
 
 func main() {
 
-	pwd, err := os.Getwd()
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	fmt.Println(pwd)
 	webApp := NewWebApplication()
 	router := httprouter.New()
 
