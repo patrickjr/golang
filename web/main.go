@@ -20,7 +20,13 @@ func NewWebApplication() *webApplication {
 }
 
 func (webApp *webApplication) init() {
-	webApp.templates = template.Must(template.ParseFiles("index.html"))
+
+	webApp.templates = template.Must(template.ParseGlob("views/*")).Funcs(
+		template.FuncMap{
+			"eq": func(x, b bool) bool {
+				return x == b
+			},
+		})
 }
 
 func (app *webApplication) Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
