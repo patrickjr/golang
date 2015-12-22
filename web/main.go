@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"os"
 	"text/template"
 
 	"github.com/julienschmidt/httprouter"
@@ -41,18 +40,12 @@ func (app *webApplication) renderTemplate(w http.ResponseWriter, tmpl string) {
 
 func main() {
 
-	pwd, err := os.Getwd()
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	fmt.Println(pwd)
 	webApp := NewWebApplication()
 	router := httprouter.New()
 
 	router.ServeFiles("/assets/*filepath", http.Dir("assets"))
 
 	router.GET("/", webApp.Index)
-	// router.GET("/hello/:name", Hello)
+	router.GET("/hello/:name", Hello)
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
