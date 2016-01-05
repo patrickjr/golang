@@ -2,15 +2,16 @@
 <html>
 <head>
 
-
-
 <link type="text/css" rel="stylesheet" href="/assets/stylesheets/app.css">
+<link type="text/css" rel="stylesheet" href="/assets/stylesheets/loader.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 </head>
 <body style='max-width: 1010px; margin: 0 auto; position: relative;'>
 
 <div class='nav-bar-top white-bkg'>
   <div class='item-box' style='left: 0% !important; text-align: left !important;'>
-    <span>Patrick Riel</span>
+    <span style='font-size: 25px; line-height: 25px;'>Patrick Riel</span>
   </div>
   <div class='item-box'>
     <span>Projects</span>
@@ -23,16 +24,16 @@
 <div class='custom-container h-550' style='padding-top: 45px;'>
   <div class='box white-bkg' style='height: 85%;'>
     <div class='left-0-50 height-100 border-right-blue absolute'>
-      <p class='padding-10 top-20 absolute'>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
+      <div class='relative center-text'>
+        <p>
+        I'm an avid programmer who just recently graduated from San Francisco State University with a B.S. in Computer Science. I enjoy skiing, hiking, eating good food, drinking great beer, ping pong, fantasy football, and working on all aspects of a technology stack. Distributed Systems, databases, asynchronous communication, software architectural patterns (MVC, Observer, etc), agile development, version control, and open-source projects excite me.
+        </p> 
+      </div>
     </div>
   
     <div class='left-50-100 height-100 absolute'>
-      <div class='image-container'>
-        <p class='padding-10 top-5 absolute'>
-          <img src ='assets/images/def_image.png' style='' alt='def_image'>
-        </p>
+      <div class='relative'>
+        <img class='image-center' src ='assets/images/def_image.png' style='' alt='def_image'>
       </div>
     </div>
 
@@ -68,9 +69,143 @@
 <div class='custom-container h-550'>
   <div class='box white-bkg' style='height: 85%;'>
     <h3>Contact</h3>
+  
+
+    <div class='form-container'>
+      <form action="/contact" method="POST" id = 'contact-form'>
+
+
+        <input id = "formNameId" placeholder="Enter Your Name" type="text" name="name" required>
+        <span class='error_id' id='formNameIdError'></span><br>
+
+        <input id = "formEmailId" placeholder="Enter Your Email" type="text" name="email" required>
+        <span class='error_id' id='formEmailIdError'></span><br>
+
+        <input id = "formPhoneId" placeholder="Enter Your Phone Number (optional)" type="text" name="phone"><br>
+        <textarea id = "formMessageId" rows="5" name="message" placeholder="Enter Your Message" required></textarea>
+        <span class='error_id' id='formMessageIdError'></span><br>
+
+        <input type="button" value="Send Message" id ='submitForm'>
+      </form>
+    </div>
 
   </div>
 </div>
+
+
+<div class='loading-bkg display-none' id = 'loadingBackground'>
+  <div style='top: 25%;' class='loader'></div>
+  <div class='loader-msg'>
+        Sending Patrick Your Message...
+  </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+var loadingBackground = document.getElementById("loadingBackground");
+var formNameError = document.getElementById("formNameIdError");
+var formEmailError = document.getElementById("formEmailIdError");
+var formMessageError = document.getElementById("formMessageIdError");
+
+var contactForm = document.getElementById("contact-form");
+var contactSubmit = document.getElementById("submitForm");
+
+  addEvent = function(object, type, callback) {
+    if (object === null || typeof(object) === 'undefined') return;
+    if (object.addEventListener) {
+        object.addEventListener(type, callback, false);
+    } else if (object.attachEvent) {
+        object.attachEvent("on" + type, callback);
+    } else {
+        object["on"+type] = callback;
+    }
+  };
+
+// this is the id of the form
+
+  function sendForm(form, url, callback){
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: $(form).serialize(), // serializes the form's elements.
+      success: callback()
+    });
+  }
+
+  function clearForm(){
+    formNameError.innerHTML = "";
+    formEmailError.innerHTML = "";
+    formMessageError.innerHTML = "";
+    clearFormFields(contactForm);
+  }
+
+  addEvent(contactSubmit, "click", function(){
+    var data = parseForm(contactForm);
+    if(data.success){
+      loadingBackground.className = "loading-bkg";
+      formNameError.innerHTML = "";
+      formEmailError.innerHTML = "";
+      formMessageError.innerHTML = "";
+      sendForm(contactForm, "/contact", clearForm);
+    }
+    else{
+      var error = "Error";
+      for(key in data.data){
+        var id = [data.data[key], error].join("");
+        var element = document.getElementById(id);
+        element.innerHTML = "*";
+      }
+    }
+  });
+
+  var clearFormFields = function(form){
+    var elements = form.elements;
+    for (var i = 0, element; element = elements[i++];) {
+      if (element.type === "button")
+        ;
+      else{
+        element.value = "";
+      }
+    }
+  }
+
+  var parseForm = function(form){
+    var elements = form.elements;
+    var data = {};
+    var errors = {};
+    for (var i = 0, element; element = elements[i++];) {
+      if (element.type === "button")
+        ;
+      else if ((element.value === "" || element.value === null) && element.required === true)
+        errors[i] = element.id;
+      else{
+        var key = element.name;
+        data[key] = element.value;
+      }
+    }
+
+    if (!isEmpty(errors)) {
+      return {success: false, data: errors };
+    }
+    return {success: true, data: data };
+  }
+
+  var hasOwnProperty = Object.prototype.hasOwnProperty;
+  function isEmpty(obj) {
+    if (obj == null) return true;
+    if (obj.length > 0)    return false;
+    if (obj.length === 0)  return true;
+    for (var key in obj) {
+      if (hasOwnProperty.call(obj, key)) return false;
+    }
+    return true;
+  }
+
+</script>
+
 
 
 </body>

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"patrickjr/web/controllers"
 	"text/template"
 
 	"github.com/julienschmidt/httprouter"
@@ -48,10 +49,9 @@ func main() {
 
 	webApp := NewWebApplication()
 	router := httprouter.New()
-
 	router.ServeFiles("/assets/*filepath", http.Dir("assets"))
-
 	router.GET("/", webApp.Index)
-	router.GET("/hello/:name", Hello)
+	router.POST("/contact", controllers.Contact)
+	// router.GET("/hello/:name", Hello)
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
