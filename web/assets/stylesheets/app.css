@@ -286,15 +286,15 @@ p{
 
 .slick-prev:before, .slick-next:before{
   color: #428bca !important;
-  z-index: 22;
+  z-index: 1;
 }
 .slick-prev{
   left: 5px !important;
-  z-index: 22;
+  z-index: 1;
 }
 .slick-next{
   right: 5px !important;
-  z-index: 22;
+  z-index: 1;
 }
 
 .slick-slide > img{
