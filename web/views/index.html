@@ -6,17 +6,23 @@
 <link type="text/css" rel="stylesheet" href="/assets/stylesheets/loader.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+
+<link rel="stylesheet" type="text/css" href="//kenwheeler.github.io/slick/slick/slick-theme.css"/>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
 </head>
 <body style='max-width: 1010px; margin: 0 auto; position: relative;'>
 
 <div class='nav-bar-top white-bkg'>
   <div class='item-box' style='left: 0% !important; text-align: left !important;'>
-    <span style='font-size: 25px; line-height: 25px;'>Patrick Riel</span>
+    <span id = 'h-btn'  style='font-size: 25px; line-height: 25px;'>Patrick Riel</span>
   </div>
   <div class='item-box'>
-    <span>Projects</span>
-    <span>Resume</span>
-    <span>Contact</span>
+    <span id = 'p-btn'>Projects</span>
+    <span id = 'r-btn'>Resume</span>
+    <span id = 'c-btn'>Contact</span>
   </div>
 </div>
 
@@ -40,7 +46,7 @@
   </div>
 </div>
 
-<div class='custom-container h-550'>
+<div class='custom-container h-550' id ='p-div' style='height: 850px;'>
   <div class='box white-bkg' style='height: 85%;'>
     <h3>Projects</h3>
     <h4>Know Friends</h4>
@@ -49,24 +55,48 @@
       <li>Client side of the application was developed in Swift 2.0 for iOS 9</li>
       <li>Server side of the application was developed in PHP on an AWS EC2 instance</li>
     </ul>
-
-    <h4>Texas Holdem</h4>
-    <ul>
-      <li>Texas Holdem Web Application</li>
-      <li>Built with Ruby on Rails, Puma, Devise, Pusher, and DeckofCards</li>
-    </ul>
+    <div class="multiple-items" style=''>
+      <div><img src ='assets/images/KF1.png' style='' alt='def_image'/></div>
+      <div><img src ='assets/images/KF2.png' style='max-width: 100%; max-height: 100%;' alt='def_image'/></div>
+      <div><img src ='assets/images/KF3.png' style='max-width: 100%; max-height: 100%;' alt='def_image'/></div>
+      <div><img src ='assets/images/KF4.png' style='max-width: 100%; max-height: 100%;' alt='def_image'/></div>
+      <div><img src ='assets/images/KF5.png' style='max-width: 100%; max-height: 100%;' alt='def_image'/></div>
+      <div><img src ='assets/images/KF6.png' style='max-width: 100%; max-height: 100%;' alt='def_image'/></div>
+    </div>
 
   </div>
 </div>
 
-<div class='custom-container h-550'>
+<div class='custom-container h-550' style='height: 750px;'>
+  <div class='box white-bkg' style='height: 85%;'>
+    <h4>Texas Holdem</h4>
+    <ul>
+      <li>Texas Holdem Web Application</li>
+      <li>Built with
+      <a href="http://rubyonrails.org/" style='color: #428bca; text-decoration: none;'>Ruby on Rails</a>,  
+      <a href="http://puma.io/" style='color: #428bca; text-decoration: none;'>Puma</a>, 
+      <a href="https://github.com/plataformatec/devise" style='color: #428bca; text-decoration: none;'>Devise</a>, 
+      <a href="https://pusher.com/" style='color: #428bca; text-decoration: none;'>Pusher</a>, and 
+      <a href="http://deck-of-cards.js.org/" style='color: #428bca; text-decoration: none;'>deck-of-cards</a>
+     </li>
+    </ul>
+    <div class="single-item" style=''>
+      <div><img src ='assets/images/1.png' style='max-width: 100%; max-height: 100%;' alt='def_image'></div>
+      <div><img src ='assets/images/2.png' style='max-width: 100%; max-height: 100%;' alt='def_image'></div>
+      <div><img src ='assets/images/3.png' style='max-width: 100%; max-height: 100%;' alt='def_image'></div>
+      <div><img src ='assets/images/4.png' style='max-width: 100%; max-height: 100%;' alt='def_image'></div>
+    </div>
+  </div>
+</div>
+
+<div class='custom-container h-550' id = 'r-div'>
   <div class='box white-bkg' style='height: 85%;'>
     <h3>Resume</h3>
 
   </div>
 </div>
 
-<div class='custom-container h-550'>
+<div class='custom-container h-550' id = 'c-div'>
   <div class='box white-bkg' style='height: 85%;'>
     <h3>Contact</h3>
   
@@ -123,8 +153,46 @@ var contactSubmit = document.getElementById("submitForm");
         object["on"+type] = callback;
     }
   };
+  addEvent(window, "load", function(){
+    $('.single-item').slick();
+    $('.multiple-items').slick();
+  });
+
 
 // this is the id of the form
+  var homeButton = document.getElementById('h-btn');
+  var projectButton = document.getElementById("p-btn");
+  var resumeButton = document.getElementById("r-btn");
+  var contactButton = document.getElementById("c-btn");
+  var projectDiv = document.getElementById("p-div");
+  var resumeDiv = document.getElementById("r-div");
+  var contactDiv = document.getElementById("c-div");
+
+  addEvent(homeButton, "click", function(){
+    $('html,body').animate({
+      scrollTop: 0},
+      'fast'
+    );   
+  })
+  addEvent(projectButton, "click", function(){
+    $('html,body').animate({
+      scrollTop: projectDiv.offsetTop -  44},
+      'fast'
+    );
+  })
+  addEvent(resumeButton, "click", function(){
+    $('html,body').animate({
+      scrollTop: resumeDiv.offsetTop -  44},
+      'fast'
+    );
+  })
+  addEvent(contactButton, "click", function(){
+    $('html,body').animate({
+      scrollTop: contactDiv.offsetTop -  44},
+      'fast'
+    );
+  })
+
 
   function sendForm(form, url, callback){
     $.ajax({

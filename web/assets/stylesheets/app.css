@@ -59,6 +59,22 @@ p{
   background-color: white;
 }
 
+.blue-bkg{
+  background-color: #428bca;
+}
+.holdem-bkg{
+  background-image: url("/assets/images/1.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.small-circle{
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  background-color:white;
+  z-index:5;
+}
 .h-550{
   min-height: 550px;
 }
@@ -264,4 +280,23 @@ p{
 
 .display-none{
   display: none;
+}
+
+/*modifying slick.css themes for arrrows*/
+
+.slick-prev:before, .slick-next:before{
+  color: #428bca !important;
+  z-index: 22;
+}
+.slick-prev{
+  left: 5px !important;
+  z-index: 22;
+}
+.slick-next{
+  right: 5px !important;
+  z-index: 22;
+}
+
+.slick-slide > img{
+  margin: 0 auto;
 }
