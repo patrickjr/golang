@@ -1,0 +1,300 @@
+/* app.css */
+
+html, body, head{
+  margin: 0;
+  padding: 0;
+}
+p{
+  font-size: 18px;
+}
+
+.nav-bar-top{ 
+  width: 100%;
+  position: fixed;
+  height: 67px;
+  top: 0px;
+  z-index: 2;
+  border-bottom: 2px solid #428bca;
+}
+
+.nav-bar-top > .item-box{
+  line-height: 5;
+  position: absolute;
+  text-align: right;
+  width: 240px;
+  right: 0px;
+}
+.nav-bar-top > .item-box > span{
+  text-align: right;
+  margin-right: 17px;
+  width: 100%;
+  border-bottom: 2px solid white;
+  font-size: 26px;
+  line-height: 18px;
+}
+.item-box > span:hover{
+  border-bottom-color: #428bca;
+  cursor: pointer;
+}
+
+.custom-container{
+  top: 48px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.box{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.black-bkg{
+  background-color: black;
+}
+.white-bkg{
+  background-color: white;
+}
+
+.blue-bkg{
+  background-color: #428bca;
+}
+.holdem-bkg{
+  background-image: url("/assets/images/1.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.small-circle{
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  background-color:white;
+  z-index:5;
+}
+.h-550{
+  min-height: 550px;
+}
+
+.left-50-100{
+  left: 50%;
+  width: 50%;
+}
+
+.left-0-50{
+  left: 0%;
+  width: 50%;
+}
+.absolute{
+  position: absolute;
+}
+
+.padding-10{
+  padding: 10%;
+}
+
+.height-100{
+  height: 100%;
+}
+
+.top-20{
+  top: 20%;
+}
+.top-12{
+  top: 5%;
+}
+
+.border-right-blue{
+  border-right: 2px solid #428bca;
+}
+
+.image-container{
+
+}
+.image-container > p > img {
+  border-radius: 50%;
+  border: 3.5px solid #428bca;
+  max-width:100%;
+  max-height:100%;
+}
+
+.about-image{
+    position: absolute;
+    height: 100%;
+    left: -5%;
+}
+.about-table{
+    height: 100%;
+    white-space: nowrap;
+    width: 100%;
+    display: table;
+}
+
+.about-cell {
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.about-cell img {
+  max-height: 414px;
+  max-width: 100%;
+  border-color: #286090;
+  border-style: solid;
+  border-radius: 50%;
+}
+
+
+.about-image{
+    position: relative;
+    width: 40%;
+    float: right;
+    height: 100%;
+}
+
+.box > h3{
+  text-align: center;
+  color: #428bca;
+  font-size: 25px;
+}
+
+.form-container{
+  width: 80%;
+  height: 100%;
+  margin-left: 10%;
+  border: 0px solid #428bca;
+}
+
+.form-container > form {
+  text-align: center;
+}
+
+.form-container > form > input, .form-container > form > textarea {
+  width: 100%;
+  max-width: 286px;
+  min-height: 19px;
+  padding: 7px 8px;
+  margin-bottom: 15px;
+  font-size: 13px;
+  color: #333;
+  vertical-align: middle;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  outline: none;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+  font-family: inherit;
+}
+
+.error_id{
+  color: red;
+  font-size: 23px;
+  position: absolute;
+  width: 9px;
+  height: 11px;
+}
+
+.form-container > form > textarea{
+  height: 76px;
+}
+
+.form-container > form > input[type="button"]{
+  background-color: #60b044;
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.15);
+  font-size: 16px;
+}
+.form-container > form > input[type="button"]:hover{
+  cursor: pointer;
+}
+
+@media (max-width: 416px){
+  .nav-bar-top > .item-box > span{
+    font-size: 13px;
+  } 
+}
+/*
+@media (max-width: 598px) {
+  .border-right-blue{
+    border: 0px;
+  }
+  .left-0-50{
+    width: 100%;
+    left: 0%;
+    top: 130px;
+  }
+  .left-50-100{
+    width: 100%;
+    left: 0%;
+  }
+  .image-container{
+    position: absolute;
+    height: 250px;
+    left: 25%;
+    width: 50%;
+  }
+  .relative{
+    height:50%;
+  }
+
+}*/
+
+.relative{
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.image-center{
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 50%;
+  border: 2px solid #428bca;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 3%;
+  right: 0;
+  bottom: 0;
+}
+
+.center-text{
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center
+}
+
+.loading-bkg{
+  z-index: 5; 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100vw; 
+  height: 100vh; 
+  background-color:rgba(0, 0, 0, 0.89);
+}
+
+.display-none{
+  display: none;
+}
+
+/*modifying slick.css themes for arrrows*/
+
+.slick-prev:before, .slick-next:before{
+  color: #428bca !important;
+  z-index: 22;
+}
+.slick-prev{
+  left: 5px !important;
+  z-index: 22;
+}
+.slick-next{
+  right: 5px !important;
+  z-index: 22;
+}
+
+.slick-slide > img{
+  margin: 0 auto;
+}

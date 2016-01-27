@@ -1,0 +1,9 @@
+{{define "register_template"}}
+<form method='POST' action = '/register' id ='reg_form' >
+    <input type="text" name="user[name]" id="register_user_name" required/>
+    <input type="text" name="user[email]" id="register_email" required/>
+    <input type="password" name="user[password]" id="register_password" required/>
+    <input type="password" name="user[confirm_password]" id="register_confirm_password" required/>
+    <button type="submit" id="register_button" >register</button>
+</form>
+{{end}}
