@@ -2,6 +2,7 @@ package validate_user
 
 import (
 	"errors"
+	"fmt"
 	"regexp"
 )
 
@@ -32,5 +33,6 @@ func Login(email string, pass string) error {
 			return nil
 		}
 	}
+	fmt.Println(pass)
 	return errors.New("invalid login")
 }

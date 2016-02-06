@@ -3,15 +3,21 @@ package models
 import (
 	"patrickjr/fantasy_football/models"
 	"testing"
+
+	"patrickjr/fantasy_football/models/model_constants"
 )
 
+/* this test currently fails
+ * must add digest_password before calling
+ * db.CreateUser(details)
+ */
 func TestCreateUser(t *testing.T) {
+	c := model_constants.SetUserConstants()
 	db := models.InitTest()
 	details := map[string]string{
-		"user_name":        "patrick2",
-		"email":            "tupac2@gmail.com",
-		"password":         "password",
-		"confirm_password": "password",
+		c.Name:     "patrick2",
+		c.Email:    "tupac2@gmail.com",
+		c.Password: "password",
 	}
 	db.CreateUser(details)
 	t.Log(db.CreateUser(details))

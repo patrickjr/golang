@@ -49,10 +49,10 @@ func (d *DbWrapper) FindUserByEmail(email string) (*sql.Row, error) {
 	return row, err
 }
 
-func (d *DbWrapper) LoginUserByEmail(email string, password string) (*sql.Row, error) {
-	stmt, err := d.Prepare(`SELECT user_name, email FROM users WHERE email = $1 AND password = $2 `)
+func (d *DbWrapper) LoginUserByEmail(email string) (*sql.Row, error) {
+	stmt, err := d.Prepare(`SELECT password FROM users WHERE email = $1`)
 	checkErr(err)
-	row := stmt.QueryRow(email, password)
+	row := stmt.QueryRow(email)
 	return row, err
 }
 

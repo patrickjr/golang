@@ -35,7 +35,7 @@ SET default_with_oids = false;
 
 CREATE TABLE users (
     email character varying(100),
-    password character varying(40),
+    password character varying(255),
     forgot_password boolean,
     user_name character varying(40)
 );
