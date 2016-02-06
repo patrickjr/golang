@@ -25,3 +25,12 @@ func Password(pass1 string, pass2 string) error {
 		return errors.New("password is invalid")
 	}
 }
+
+func Login(email string, pass string) error {
+	if (len(email) > 0) && (len(pass) > 0) {
+		if (len(email) < 40) && (len(pass) < 40) {
+			return nil
+		}
+	}
+	return errors.New("invalid login")
+}

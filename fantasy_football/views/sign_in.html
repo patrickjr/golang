@@ -6,18 +6,17 @@
 
 
 <div class = '' style='position: relative; top: 70px; width: 100%; min-height: 750px;'>
-  
-  <div class = "absolute left-0-50 top-45 center-text">
-    <a class ='font-28 centered-link' href='/sign_in'>Log In</a>
+  {{ if .Flashes }}
+    <div style='color: white'>
+      {{ .count }}
+      {{ .Flashes }}
+    </div>
+  {{ end }}
+  <div class='form-container absolute top-45 center-text' style='width: 100%;'>
+    {{ template "login_template" .}}
   </div>
-  <div class = "absolute left-50-100 top-45 center-text">
-    <a class ='font-28 centered-link' href='/sign_up'>Sign Up</a>
-  </div>
-
 
 </div>
-
-
 </body>
 
 </html>

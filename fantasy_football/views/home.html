@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{{template "head_template" .}}
+
+<body class='grey-bkg' style='margin: 0; padding: 0;'>
+{{template "nav_bar_template" .}}
+
+
+<div class = '' style='position: relative; top: 70px; width: 100%; min-height: 750px;'>
+  {{ if .user }}
+    <div style='color: white'>
+      {{ .user.UserName }}
+    </div>
+  {{ end }}
+
+</div>
+
+
+</body>
+
+</html>

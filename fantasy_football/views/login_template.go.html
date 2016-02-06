@@ -1,0 +1,13 @@
+{{define "login_template"}}
+<form method='POST' action = '/login' id ='login_form' >
+    
+    <label>Email</label><label id='er_un'></label>
+    <input type="text" name="user[email]" id="login_email" required/>
+    
+    <label>Password</label><label id='er_ps'></label>
+    <input type="password" name="user[password]" id="login_button_password" required/>
+
+    <input type="submit" id="login_button" value="Log In"></input>
+
+</form>
+{{end}}

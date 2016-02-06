@@ -17,6 +17,9 @@ func main() {
 	router.GET("/", webApp.Index)
 	router.POST("/login", webApp.Login)
 	router.POST("/register", webApp.Register)
-
+	router.GET("/sign_in", webApp.SignIn)
+	router.GET("/sign_up", webApp.SignUp)
+	router.GET("/logout", webApp.Logout)
+	router.GET("/home", webApp.Home)
 	log.Fatal(http.ListenAndServe(":8080", router))
 }

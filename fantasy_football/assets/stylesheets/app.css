@@ -56,6 +56,9 @@ p{
 .white-bkg{
   background-color: white;
 }
+.grey-bkg{
+  background-color: #262626;
+}
 
 .blue-bkg{
   background-color: #428bca;
@@ -96,6 +99,10 @@ p{
 
 .height-100{
   height: 100%;
+}
+
+.top-45{
+  top: 45%;
 }
 
 .top-20{
@@ -159,22 +166,26 @@ p{
 }
 
 .form-container{
-  width: 80%;
-  height: 100%;
-  margin-left: 10%;
-  border: 0px solid #428bca;
+  display: block;
+  margin: 0 auto;
+  width: 85%;
 }
 
 .form-container > form {
-  text-align: center;
+  width: 100%;
+  max-width: 286px;
 }
 
 .form-container > form > input, .form-container > form > textarea {
+
+  display: block;
+  margin: 0 auto;
+  
   width: 100%;
-  max-width: 286px;
+  max-width: inherit;
   min-height: 19px;
   padding: 7px 8px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   font-size: 13px;
   color: #333;
   vertical-align: middle;
@@ -188,6 +199,10 @@ p{
   font-family: inherit;
 }
 
+.form-container > form > label{
+  color: #428bca;
+}
+
 .error_id{
   color: red;
   font-size: 23px;
@@ -199,6 +214,20 @@ p{
 .form-container > form > textarea{
   height: 76px;
 }
+
+.form-container > form > input[type='submit']{
+  width: 100%;
+  margin-left: 8px;
+  background-color: #428bca;
+  color: white;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.15);
+  font-size: 16px; 
+}
+.form-container > form > input[type='submit']:hover{
+  background-color: #60b044;
+  cursor: pointer;
+}
+
 
 .form-container > form > input[type="button"]{
   background-color: #60b044;
@@ -297,4 +326,19 @@ p{
 
 .slick-slide > img{
   margin: 0 auto;
+}
+
+.centered-link{
+  text-align: center;
+  color: #2a6496;
+  text-decoration: none;
+
+}
+.centered-link:hover{
+  text-decoration: none;
+  color: white;
+}
+
+.font-28{
+  font-size: 28px;
 }

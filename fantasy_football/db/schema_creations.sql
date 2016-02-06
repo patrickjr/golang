@@ -4,3 +4,5 @@ CREATE TABLE IF NOT EXISTS users  (
     forgot_password boolean,
     user_name character varying(40)
 );
+
+ALTER TABLE mytable ADD COLUMN mycolumn character varying(50) NOT NULL DEFAULT 'foo';

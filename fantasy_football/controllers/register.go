@@ -1,24 +1,26 @@
 package controllers
 
 import (
-	"encoding/json"
-	"html/template"
+	_ "encoding/json"
 	"net/http"
 	"patrickjr/fantasy_football/models"
 	"patrickjr/fantasy_football/models/model_constants"
 
+	"patrickjr/fantasy_football/web_app/web_app_interface"
+
 	"github.com/julienschmidt/httprouter"
 )
 
-func Register(w http.ResponseWriter, r *http.Request, _ httprouter.Params, templates *template.Template) {
+func Register(w http.ResponseWriter, r *http.Request, _ httprouter.Params, app web_app_interface.Interface) {
 	if r.Method == "POST" {
 		details := parseRegisterForm(r)
-		data := models.UserRegister(details)
-		json, err := json.Marshal(data)
+		data, err := models.UserRegister(details)
 		if err != nil {
-
+			app.FlashMessages(w, r, err.Error())
+			app.RouteSignUp(w, r)
 		}
-		w.Write(json)
+		app.CreateNewUserSession(w, r, data)
+		app.RouteHome(w, r)
 	}
 }
 
