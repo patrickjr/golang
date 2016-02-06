@@ -5,7 +5,20 @@
 
     // Public Property
     // pjr.public = "property";
-
+    pjr.error_mapping = {
+      'reg_err_0' : ['er_ps'],
+      'reg_err_1' : ['er_ps'],
+      'reg_err_2' : ['er_un', 'er_em'],
+      'reg_err_3' : ['er_em'],
+      'log_err_0' : ['er_un'],
+    };
+    pjr.error_messages = {
+      'reg_err_0' : 'password minimum length is 7',
+      'reg_err_1' : "passwords don't match",
+      'reg_err_2' : 'email/username already taken',
+      'reg_err_3' : 'invalid email',
+      'log_err_0' : 'invalid login',
+    };
     //Public Method
     pjr.addEvent = function(object, type, callback){
       if (object === null || typeof(object) === 'undefined') return;
@@ -68,6 +81,15 @@
           callback(data)
         }
       });
+    };
+
+    pjr.applyErrorMessages = function (message, map){
+      if (map.hasOwnProperty(message)){
+        map[message].forEach(function(value){
+          var err_msg = ['  *(', pjr.error_messages[message], ')'];
+          document.getElementById(value).innerHTML = err_msg.join('');
+        });
+      }
     };
 
     // Private Method

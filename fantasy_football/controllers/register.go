@@ -18,9 +18,10 @@ func Register(w http.ResponseWriter, r *http.Request, _ httprouter.Params, app w
 		if err != nil {
 			app.FlashMessages(w, r, err.Error())
 			app.RouteSignUp(w, r)
+		} else {
+			app.CreateNewUserSession(w, r, data)
+			app.RouteHome(w, r)
 		}
-		app.CreateNewUserSession(w, r, data)
-		app.RouteHome(w, r)
 	}
 }
 

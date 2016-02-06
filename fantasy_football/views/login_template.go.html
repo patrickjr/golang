@@ -1,13 +1,20 @@
 {{define "login_template"}}
 <form method='POST' action = '/login' id ='login_form' >
     
-    <label>Email</label><label id='er_un'></label>
+    <label>Email</label><label class='error_id' id='er_un'></label>
     <input type="text" name="user[email]" id="login_email" required/>
     
-    <label>Password</label><label id='er_ps'></label>
+    <label>Password</label><label class='error_id' id='er_ps'></label>
     <input type="password" name="user[password]" id="login_button_password" required/>
 
     <input type="submit" id="login_button" value="Log In"></input>
 
 </form>
+<script>
+  {{ if .Flashes }}
+    var registeration_errors = {};
+    registeration_errors.message = {{ .Flashes0 }};
+    pjr.applyErrorMessages(registeration_errors.message, pjr.error_mapping)
+  {{ end }}
+</script>
 {{end}}

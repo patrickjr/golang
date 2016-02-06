@@ -10,7 +10,9 @@ import (
 	"encoding/gob"
 	"html/template"
 	"net/http"
+	"patrickjr/fantasy_football/lib/ff_utility"
 	"patrickjr/fantasy_football/models"
+	"strconv"
 
 	"github.com/gorilla/sessions"
 )
@@ -103,7 +105,11 @@ func (webApp *webApplication) Data(w http.ResponseWriter, r *http.Request, messa
 	}
 	s := webApp.GetSession(w, r)
 	if flashes := s.Flashes(); len(flashes) > 0 {
-		m["Flashes"] = flashes
+		m["Flashes"] = len(flashes)
+		for i := range flashes {
+			msg := ff_utility.ConvertToString(flashes[i])
+			m["Flashes"+strconv.Itoa(i)] = msg
+		}
 	}
 	s.Save(r, w)
 	return m

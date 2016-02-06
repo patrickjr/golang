@@ -28,12 +28,12 @@ func UserLoginWithSession(s *sessions.Session) *User {
 	}
 }
 
-func UserLogin(m map[string]string) *User {
+func UserLogin(m map[string]string) (*User, error) {
 	user, err := returning_user(m)
 	if err != nil {
-		return nil
+		return nil, err
 	}
-	return user
+	return user, nil
 }
 
 func UserRegister(m map[string]string) (*User, error) {
@@ -66,7 +66,7 @@ func new_user(m map[string]string) (*User, error) {
 func create_user(m map[string]string) (*User, error) {
 	_, err := db.CreateUser(m)
 	if err != nil {
-		return nil, err
+		return nil, errors.New("reg_err_2")
 	}
 	constants := model_constants.SetUserConstants()
 	return &User{UserName: m[constants.Name], Email: m[constants.Email], Cookie: ff_utility.GenerateCookie(), Remember: false}, nil
@@ -87,7 +87,7 @@ func login_user(email string, password string) (*User, error) {
 		row, err = db.FindUserByEmail(email)
 		return get_user(row, err)
 	} else {
-		return nil, errors.New("invalid email/password")
+		return nil, errors.New(model_constants.InvalidLogin)
 	}
 }
 
@@ -107,7 +107,7 @@ func valid_password(password string, row *sql.Row, err error) bool {
 
 func get_user(row *sql.Row, err error) (*User, error) {
 	if err != nil {
-		return nil, err
+		return nil, errors.New(model_constants.InvalidLogin)
 	}
 	user := scan_user(row)
 	return user, err

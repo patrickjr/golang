@@ -1,18 +1,27 @@
 {{define "register_template"}}
 <form method='POST' action = '/register' id ='reg_form' >
     
-    <label>User Name</label><label id='er_un'></label>
+    <label>User Name</label><label class = 'error_id' id='er_un'></label>
     <input type="text" name="user[name]" id="register_user_name" required/>
     
-    <label>Email</label><label id='er_em'></label>
+    <label>Email</label><label class = 'error_id' id='er_em'></label>
     <input type="text" name="user[email]" id="register_email" required/>
     
-    <label>Password</label><label id='er_ps'></label>
+    <label>Password</label><label class = 'error_id' id='er_ps'></label>
     <input type="password" name="user[password]" id="register_password" required/>
     
-    <label>Confirm Password</label><label id='er_cps'></label>
+    <label>Confirm Password</label><label class = 'error_id' id='er_cps'></label>
     <input type="password" name="user[confirm_password]" id="register_confirm_password" required/>
     <input type="submit" id="register_button" value="Register"></input>
 
 </form>
+
+<script>
+  {{ if .Flashes }}
+    var registeration_errors = {};
+    registeration_errors.message = {{ .Flashes0 }};
+    pjr.applyErrorMessages(registeration_errors.message, pjr.error_mapping)
+  {{ end }}
+</script>
+
 {{end}}

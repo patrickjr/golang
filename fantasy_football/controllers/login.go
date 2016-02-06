@@ -13,12 +13,12 @@ import (
 func Login(w http.ResponseWriter, r *http.Request, _ httprouter.Params, app web_app_interface.Interface) {
 	if r.Method == "POST" {
 		details := parseLoginForm(r)
-		user := models.UserLogin(details)
+		user, err := models.UserLogin(details)
 		if user != nil {
 			app.CreateNewUserSession(w, r, user)
 			app.RouteHome(w, r)
 		} else {
-			app.FlashMessages(w, r, "invalid login")
+			app.FlashMessages(w, r, err.Error())
 			app.RouteSignIn(w, r)
 		}
 	}
